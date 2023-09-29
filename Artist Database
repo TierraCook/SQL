@@ -1,0 +1,40 @@
+--Create a artist database
+
+
+CREATE table Artist (id INTEGER PRIMARY KEY, artist_name TEXT, artist_age INTEGER, genre TEXT, career_length TEXT);
+
+INSERT INTO artist VALUES (1, "Sabrina Claudio", 27, "Cuban R&B", "7 years");
+INSERT INTO artist VALUES (2, "Teyana Taylor", 32, "R&B/HipHop", "18 years");
+INSERT INTO artist VALUES (4, "Alina Baraz", 30, "R&B", "10 years");
+INSERT INTO artist VALUES (5, "Cardi B", 31, "HipHop Trap", "8 years");
+INSERT INTO artist VALUES (6, "Megan Thee Stallion" , 28, "HipHop"," 7 years");
+INSERT INTO artist VALUES (7, "Rihanna", 35, "Pop/R&B", "20 years");
+
+
+CREATE table Net_Worth (artist_name TEXT PRIMARY KEY, id INTEGER, net_worth TEXT, albums_sold INTEGER);
+
+INSERT INTO Net_Worth VALUES ("Sabrina Claudio", 1, "7 million", 2);
+INSERT INTO Net_Worth VALUES ("Teyana Taylor", 2, "5 million", 3);
+INSERT INTO Net_Worth VALUES ("Jhene Aiko", 3, "6 million", 3);
+INSERT INTO Net_Worth VALUEs ("Alina Baraz", 4, " 5 million", 2);
+INSERT INTO Net_Worth VALUES ("Cardi B", 5, "80 million", 1);
+INSERT INTO Net_Worth VALUES ("Megan Thee Stallion", 6, "14 million", 5);
+INSERT INTO Net_Worth VALUES ("Rihanna", 7, "1.7 billion", 8);
+
+
+## JOIN two tables to get net worth of artist
+SELECT artist.artist_name, artist.artist_age, net_worth.net_worth
+   FROM artist
+     JOIN net_worth
+    ON artist.id = net_worth.id;
+
+## Select artist name, age and career length
+SELECT artist_name, artist_age, career_length
+    FROM artist;
+    
+
+## Self JOIN to create new column length
+SELECT artist.artist_name, artist.artist_age, length.career_length as length
+    FROM artist
+     JOIN artist length
+     ON length.career_length = length.id
